@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="title">
+    <h4>Lista de producto</h4>
+    <button type="button" class="btn btn-outline-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nuevo producto</font></font></button>
+  </div>
+
+  <table class="table table-hover" >
+    <thead>
+      <tr class="m-0">
+        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
+        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de producto</font></font></th>
+        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descripcion</font></font></th>
+        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Precio</font></font></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Products of listProducts" class="table-active">
+        <td>{{Products.id}}</td>
+        <td>{{Products.name}}</td>
+        <td>{{Products.description}}</td>
+        <td>{{Products.price}}</td>
+        <td></td>
+      </tr>
+      </tbody>
+      </table>
+
+
+
+</div>
+
+
