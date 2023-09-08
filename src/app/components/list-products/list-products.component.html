@@ -1,16 +1,17 @@
 <div class="container">
   <div class="title">
     <h4>Lista de producto</h4>
-    <button type="button" class="btn btn-outline-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nuevo producto</font></font></button>
+    <button type="button" class="btn btn-outline-primary mt-3" routerLink="/add">Nuevo producto</button>
   </div>
 
   <table class="table table-hover" >
     <thead>
       <tr class="m-0">
-        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Id</font></font></th>
-        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de producto</font></font></th>
-        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descripcion</font></font></th>
-        <th scope="col"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Precio</font></font></th>
+        <th >Id</th>
+        <th >Nombre de producto</th>
+        <th >Descripcion</th>
+        <th >Precio</th>
+        <th >Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +20,10 @@
         <td>{{Products.name}}</td>
         <td>{{Products.description}}</td>
         <td>{{Products.price}}</td>
-        <td></td>
+        <td>
+          <button routerLink="/edit/{{Products.id}}" type="button" class="btn btn-outline-info btn-sm ">Edit</button>
+          <button type="button" class="btn btn-outline-danger btn-sm ms-2">Delete</button>
+        </td>
       </tr>
       </tbody>
       </table>
