@@ -8,12 +8,7 @@ import { Product } from 'src/interfaces/products';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-  listProducts :Product[] = [
-    {id:1, name:'Coca cola', description:'Refrescante soda sabor cola', price:20},
-    {id:2, name:'Corona', description:'Cerveza clara nacional', price:35}
-
-
-  ]
+  listProducts :Product[] = []
   constructor(private _productService : ProductsService) { }
 
     ngOnInit(): void{
@@ -22,7 +17,18 @@ export class ListProductsComponent implements OnInit {
 
      getListProducts(){
       this._productService.getListProducts().subscribe((data) => {
-        console.log(data)
+        this.listProducts = data;
       }
      )}
+
+      deleteProduct(id: number){
+        console.log(id);
+      }
+
+
+
+
+
+
+
 }

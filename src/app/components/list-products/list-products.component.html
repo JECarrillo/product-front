@@ -4,14 +4,14 @@
     <button type="button" class="btn btn-outline-primary mt-3" routerLink="/add">Nuevo producto</button>
   </div>
 
-  <table class="table table-hover" >
+  <table class="table table-hover">
     <thead>
       <tr class="m-0">
-        <th >Id</th>
-        <th >Nombre de producto</th>
-        <th >Descripcion</th>
-        <th >Precio</th>
-        <th >Acciones</th>
+        <th>Id</th>
+        <th>Nombre de producto</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -19,17 +19,15 @@
         <td>{{Products.id}}</td>
         <td>{{Products.name}}</td>
         <td>{{Products.description}}</td>
-        <td>{{Products.price}}</td>
+        <td>{{Products.price | currency}}</td>
         <td>
           <button routerLink="/edit/{{Products.id}}" type="button" class="btn btn-outline-info btn-sm ">Edit</button>
-          <button type="button" class="btn btn-outline-danger btn-sm ms-2">Delete</button>
+          <button (click)="deleteProduct(Products.id)" type="button" class="btn btn-outline-danger btn-sm ms-2">Delete</button>
         </td>
       </tr>
-      </tbody>
-      </table>
+    </tbody>
+  </table>
 
 
 
 </div>
-
-

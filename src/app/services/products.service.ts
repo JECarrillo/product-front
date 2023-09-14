@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { enviroment } from '../environment/environment';
+import { environment } from '../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../interfaces/products';
 import { Observable } from 'rxjs/internal/Observable';
@@ -15,8 +15,8 @@ export class ProductsService {
 
 
   constructor(private http :HttpClient) {
-    this.myAppUrl = enviroment.endpoint
-    this.myApiurl = 'product'
+    this.myAppUrl = environment.endpoint
+    this.myApiurl = 'products'
   }
 
   getListProducts(): Observable<Product[]> {
