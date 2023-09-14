@@ -17,6 +17,7 @@ export class ProductsService {
   constructor(private http :HttpClient) {
     this.myAppUrl = environment.endpoint
     this.myApiurl = 'products'
+
   }
 
   getListProducts(): Observable<Product[]> {
@@ -24,6 +25,14 @@ export class ProductsService {
 
 
   }
+
+  deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiurl}/${id}`);
+  }
+
+
+
+
 
 
 }

@@ -22,7 +22,9 @@ export class ListProductsComponent implements OnInit {
      )}
 
       deleteProduct(id: number){
-        console.log(id);
+        this._productService.deleteProduct(id).subscribe( ()=> {
+         this.getListProducts();
+        })
       }
 
 
