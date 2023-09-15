@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/products';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-add-edit-products',
@@ -10,9 +11,10 @@ import { Product } from '../../../interfaces/products';
 export class AddEditProductsComponent implements OnInit {
   formProducto: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+   private _productService:ProductsService ) {
     this.formProducto = this.fb.group({
-      id: ['', Validators.required],
+
       name: ['', Validators.required],
       description: [, Validators.required],
       price: [, Validators.required]
@@ -36,7 +38,10 @@ export class AddEditProductsComponent implements OnInit {
       description: this.formProducto.value.description,
       price: this.formProducto.value.price,
     }
-    console.log(Product)
+
+    this._productService.saveProduct(Product).subscribe(() =>{
+      console.log('producto agregado')
+    })
   }
 
 

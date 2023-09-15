@@ -32,5 +32,4 @@ export class ListProductsComponent implements OnInit {
 
 
 
-
 }

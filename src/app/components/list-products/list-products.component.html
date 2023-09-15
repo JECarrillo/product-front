@@ -7,7 +7,7 @@
   <table class="table table-hover">
     <thead>
       <tr class="m-0">
-        <th>Id</th>
+
         <th>Nombre de producto</th>
         <th>Descripcion</th>
         <th>Precio</th>
@@ -16,7 +16,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let Products of listProducts" class="table-active">
-        <td>{{Products.id}}</td>
+
         <td>{{Products.name}}</td>
         <td>{{Products.description}}</td>
         <td>{{Products.price | currency}}</td>
