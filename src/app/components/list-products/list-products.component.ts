@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/interfaces/products';
 
@@ -9,7 +10,7 @@ import { Product } from 'src/interfaces/products';
 })
 export class ListProductsComponent implements OnInit {
   listProducts :Product[] = []
-  constructor(private _productService : ProductsService) { }
+  constructor(private _productService : ProductsService, private toastr: ToastrService) { }
 
     ngOnInit(): void{
       this.getListProducts();
@@ -24,6 +25,7 @@ export class ListProductsComponent implements OnInit {
       deleteProduct(id: number){
         this._productService.deleteProduct(id).subscribe( ()=> {
          this.getListProducts();
+         this.toastr.warning('El producto fue eliminado','Producto Eliminado')
         })
       }
 

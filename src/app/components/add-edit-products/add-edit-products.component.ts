@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/products';
 import { ProductsService } from 'src/app/services/products.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit-products',
@@ -10,39 +12,70 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class AddEditProductsComponent implements OnInit {
   formProducto: FormGroup;
+  id: number;
+  operacion: string = 'Agregar ';
 
-  constructor(private fb: FormBuilder,
-   private _productService:ProductsService ) {
+
+  constructor(
+    private fb: FormBuilder,
+    private _productService: ProductsService,
+    private router: Router,
+    private toastr: ToastrService,
+    private aRouter: ActivatedRoute
+  ) {
     this.formProducto = this.fb.group({
-
       name: ['', Validators.required],
-      description: [, Validators.required],
-      price: [, Validators.required]
-    })
+      description: ['', Validators.required],
+      price: ['', Validators.required]
+    });
+
+
+
+
+    this.id = Number(aRouter.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
+    if (this.id !== 0) {
+      this.operacion = 'Editar ';
+      this.getProduct(this.id);
+    }
+  }
 
+  getProduct(id: number) {
+    this._productService.getProduct(id).subscribe((data: Product) => {
+      this.formProducto.patchValue({
+        id: data.id,
+        name: data.name,
+        description: data.description,
+        price: data.price
+      });
+    });
   }
 
   addProducto() {
-    /*const Product: Product = {
-      id:
-    }*/
-    // console.log(this.formProducto.value.name)
-    // console.log(this.formProducto.get('name')?.value);
-
-    const Product ={
+    const Product = {
       id: this.formProducto.value.id,
       name: this.formProducto.value.name,
       description: this.formProducto.value.description,
       price: this.formProducto.value.price,
+    };
+
+    if(this.id !== 0 ) {
+      //es editar
+      Product.id = this.id;
+      this._productService.updateProduct(this.id, Product).subscribe(() => {
+        this.toastr.info(`El producto ${Product.name} fue actualizado con éxito, Producto Actualizado`);
+        this.router.navigate(['/']);
+      })
+    }else{
+
+      this._productService.saveProduct(Product).subscribe(() => {
+        this.toastr.success(`El producto ${Product.name} fue registrado con éxito, Producto Registrado`);
+        this.router.navigate(['/']);
+      });
     }
-
-    this._productService.saveProduct(Product).subscribe(() =>{
-      console.log('producto agregado')
-    })
+    this.router.navigate(['/']);
   }
-
-
 }
+
