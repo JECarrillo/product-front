@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environment/environment';
+import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../../interfaces/products';
+import { Product } from '../../../interfaces/products';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ProductsService {
   private myAppUrl: string;
 
 
-  constructor(private http :HttpClient) {
+  constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint
     this.myApiurl = 'products'
 
@@ -31,18 +31,18 @@ export class ProductsService {
   }
 
 
-  saveProduct(product: Product ): Observable<void>{
+  saveProduct(product: Product): Observable<void> {
     return this.http.post<void>(`${this.myAppUrl}${this.myApiurl}`, product);
 
   }
 
-getProduct(id: number): Observable<Product> {
-  return this.http.get<Product>(`${this.myAppUrl}${this.myApiurl}/${id}`);
+  getProduct(id: number): Observable<Product> {
+    return this.http.get<Product>(`${this.myAppUrl}${this.myApiurl}/${id}`);
 
 
-}
+  }
 
-updateProduct(id:number, product:Product) : Observable<void>{
-  return this.http.put<void>(`${this.myAppUrl}${this.myApiurl}/${id}`, product)
-}
+  updateProduct(id: number, product: Product): Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiurl}/${id}`, product)
+  }
 }

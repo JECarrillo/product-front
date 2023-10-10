@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/products';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/crud/services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -66,16 +66,16 @@ export class AddEditProductsComponent implements OnInit {
       Product.id = this.id;
       this._productService.updateProduct(this.id, Product).subscribe(() => {
         this.toastr.info(`El producto ${Product.name} fue actualizado con éxito, Producto Actualizado`);
-        this.router.navigate(['/']);
+        this.router.navigate(['crud']);//pantalla donde muestra la tabla, con el nuevo registrol.
       })
     }else{
 
       this._productService.saveProduct(Product).subscribe(() => {
         this.toastr.success(`El producto ${Product.name} fue registrado con éxito, Producto Registrado`);
-        this.router.navigate(['/']);
+        this.router.navigate(['crud']);
       });
     }
-    this.router.navigate(['/']);
+    this.router.navigate(['crud']);
   }
 }
 
