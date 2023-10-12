@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../../interfaces/products';
 import { ProductsService } from 'src/app/crud/services/products.service';
@@ -17,6 +17,7 @@ export class AddEditProductsComponent implements OnInit {
 
 
   constructor(
+    private changeDetectorRef: ChangeDetectorRef,
     private fb: FormBuilder,
     private _productService: ProductsService,
     private router: Router,
@@ -75,7 +76,7 @@ export class AddEditProductsComponent implements OnInit {
         this.router.navigate(['crud']);
       });
     }
-    this.router.navigate(['crud']);
+    this.changeDetectorRef.detectChanges();
   }
 }
 

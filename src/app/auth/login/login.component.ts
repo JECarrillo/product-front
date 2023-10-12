@@ -32,13 +32,14 @@ export class LoginComponent {
     this.authService.login(this.credentials)
     .subscribe(
       (response) => {
-        console.log(response)
+        
         localStorage.setItem("token", response.token)
         this.router.navigate(['crud']);
       },
       (error) => {
+        console.log('Error Response:', error);
         this.errorStatus = true;
-        this.errorMsj = error.error_msg; 
+        this.errorMsj = error.error.error; 
       }
     );
     }
