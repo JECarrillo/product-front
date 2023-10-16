@@ -1,35 +1,48 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.1/superhero/bootstrap.min.css" integrity="sha512-Qd4Ez/FE/anYVYk5yrlGlblYQe2DPgtXyddJvP5jEVAuh/y238Y6L+7eEpRi9+8g4BVnoeFI90kOkS3gAnJkkA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<app-navbar/>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Página de Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.1/superhero/bootstrap.min.css">
+</head>
+<body>
 
-  <div class="title">
-    <h4>Lista de producto</h4>
-    <button type="button" class="btn btn-outline-primary mt-3" routerLink="/add">Nuevo producto</button>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/crud">Tu Logo</a>
+        <!-- Puedes agregar aquí elementos de navegación, como enlaces a otras secciones de tu sitio -->
+    </div>
+</nav>
 
-  <table class="table table-hover">
-    <thead>
-      <tr class="m-0">
+<div class="container my-4">
+    <h1 class="display-4">Lista de Productos</h1>
+    <a href="/add" class="btn btn-primary mb-4">Nuevo Producto</a>
+    <table class="table table-bordered">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Nombre del Producto</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of listProducts">
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price | currency }}</td>
+                <td class="d-flex align-items-center">
+                    <a href="/edit/{{ product.id }}" class="btn btn-outline-info btn-sm me-2">Editar</a>
+                    <button (click)="deleteProduct(product.id)" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-        <th>Nombre de producto</th>
-        <th>Descripcion</th>
-        <th>Precio</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let Products of listProducts" class="table-active">
-
-        <td>{{Products.name}}</td>
-        <td>{{Products.description}}</td>
-        <td>{{Products.price | currency}}</td>
-        <td>
-          <button routerLink="/edit/{{Products.id}}" type="button" class="btn btn-outline-info btn-sm ">Edit</button>
-          <button (click)="deleteProduct(Products.id)" type="button" class="btn btn-outline-danger btn-sm ms-2">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+</body>
+</html>
 
 
 

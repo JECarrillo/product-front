@@ -1,35 +1,41 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.1/superhero/bootstrap.min.css" integrity="sha512-Qd4Ez/FE/anYVYk5yrlGlblYQe2DPgtXyddJvP5jEVAuh/y238Y6L+7eEpRi9+8g4BVnoeFI90kOkS3gAnJkkA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<div class="row mt-5">
-  <div class="col-lg-4 offset-lg-5">
-    <div class="card border-primary mb-3" style="max-width: 20rem;">
-      <div class="card-header text-center">{{operacion}}</div>
-      <div class="card-body">
-        <form [formGroup]="formProducto" (ngSubmit)="addProducto()">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.1/superhero/bootstrap.min.css" integrity="sha512-Qd4Ez/FE/anYVYk5yrlGlblYQe2DPgtXyddJvP5jEVAuh/y238Y6L+7eEpRi9+8g4BVnoeFI90kOkS3gAnJkkA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Tu Página de Productos</title>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card border-primary mb-3">
+                <div class="card-header text-center">{{operacion}}</div>
+                <div class="card-body">
+                    <form [formGroup]="formProducto" (ngSubmit)="addProducto()">
 
-          <input formControlName="name" type="text" class="form-control mt-3" placeholder="Ingrese Nombre">
-          <span *ngIf="formProducto.get('name')?.hasError('required') && formProducto.get('name')?.touched">
-              El campo nombre es <strong>requerido</strong>
-          </span>
-          <input formControlName="description" type="text" class="form-control mt-3" placeholder="Ingrese Descripcion">
-          <span *ngIf="formProducto.get('description')?.hasError('required') && formProducto.get('description')?.touched">
-            El campo descripcion es <strong>requerido</strong>
-        </span>
-          <input formControlName="price" type="number" class="form-control mt-3" placeholder="Ingrese Precio">
-          <span *ngIf="formProducto.get('price')?.hasError('required') && formProducto.get('price')?.touched">
-            El campo precio es <strong>requerido</strong>
-        </span>
-          <div class="row mt-2 text-center">
-            <div class="col-lg-6">
-              <button [disabled]="formProducto.invalid" type="submit" class="btn btn-primary ">Guardar</button>
+                        <input formControlName="name" type="text" class="form-control mt-3" placeholder="Ingrese Nombre">
+                        <span *ngIf="formProducto.get('name')?.hasError('required') && formProducto.get('name')?.touched">
+                            El campo nombre es <strong>requerido</strong>
+                        </span>
+                        <input formControlName="description" type="text" class="form-control mt-3" placeholder="Ingrese Descripcion">
+                        <span *ngIf="formProducto.get('description')?.hasError('required') && formProducto.get('description')?.touched">
+                            El campo descripcion es <strong>requerido</strong>
+                        </span>
+                        <input formControlName="price" type="number" class="form-control mt-3" placeholder="Ingrese Precio">
+                        <span *ngIf="formProducto.get('price')?.hasError('required') && formProducto.get('price')?.touched">
+                            El campo precio es <strong>requerido</strong>
+                        </span>
+                        <div class="text-center mt-3">
+                            <button [disabled]="formProducto.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                            <button routerLink="/crud" type="button" class="btn btn-danger ms-2">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col-lg-6">
-              <button routerLink="/crud" type="button" class="btn btn-danger ">Cancelar</button>
-            </div>
-          </div>
-        </form>
-      </div>
+        </div>
     </div>
-
-  </div>
-
 </div>
+</body>
+</html>
