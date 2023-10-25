@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
-    // ContadorComponent
     LoginComponent
   ],
   exports: [
@@ -22,8 +21,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
       CommonModule,
       ReactiveFormsModule,
       FormsModule
-      //CommonModule, ReactiveFormsModule, FormsModule
-
   ],
 })
 export class AuthModule { }

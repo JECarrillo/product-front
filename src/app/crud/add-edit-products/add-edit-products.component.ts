@@ -67,7 +67,7 @@ export class AddEditProductsComponent implements OnInit {
       Product.id = this.id;
       this._productService.updateProduct(this.id, Product).subscribe(() => {
         this.toastr.info(`El producto ${Product.name} fue actualizado con éxito, Producto Actualizado`);
-        this.router.navigate(['crud']);//pantalla donde muestra la tabla, con el nuevo registrol.
+        this.router.navigate(['crud']);
       })
     }else{
 

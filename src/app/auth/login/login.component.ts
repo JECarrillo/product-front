@@ -1,7 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthModule } from '../auth.module';
 import { AuthService } from './login.services';
 import { User } from '../interfaces/auth.interfaces';
 import { Router } from '@angular/router';
