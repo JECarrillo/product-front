@@ -9,7 +9,7 @@ import { Product } from 'src/interfaces/products';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-  listProducts :Product[] = []
+  listProducts : any = []
   constructor(private _productService : ProductsService, private toastr: ToastrService) { }
 
     ngOnInit(): void{

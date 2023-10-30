@@ -18,8 +18,8 @@ export class ProductsService {
     this.myApiurl = 'products'
   }
 
-  getListProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.myAppUrl + this.myApiurl);
+  getListProducts() {
+    return this.http.get(this.myAppUrl + this.myApiurl);
 
   }
 

@@ -27,7 +27,7 @@ export class AddEditProductsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
-      category: [null, Validators.required] // Se utiliza "null" para un campo seleccionable.
+      category: ['', Validators.required]
     });
 
     this.id = Number(route.snapshot.paramMap.get('id'));
@@ -37,6 +37,7 @@ export class AddEditProductsComponent implements OnInit {
     if (this.id !== 0) {
       this.operacion = 'Editar';
       this.getProduct(this.id);
+      
     }
     this.getListCategory();
   }
@@ -56,6 +57,9 @@ export class AddEditProductsComponent implements OnInit {
     this.productService.getProduct(id).subscribe(
       (data) => {
         this.formProducto.patchValue(data);
+        const selectedCategoryValue = data.category
+        this.formProducto.get('categoryId')?.setValue(selectedCategoryValue)
+        console.log(selectedCategoryValue)
       },
       (error) => {
         console.error('Error al cargar el producto', error);
@@ -67,7 +71,7 @@ export class AddEditProductsComponent implements OnInit {
     const productData = this.formProducto.value;
 
     if (this.id !== 0) {
-      // Es una edición
+      
       this.productService.updateProduct(this.id, productData).subscribe(
         () => {
           this.toastr.info(`El producto ${productData.name} fue actualizado con éxito. Producto Actualizado`);
@@ -78,9 +82,10 @@ export class AddEditProductsComponent implements OnInit {
         }
       );
     } else {
-      // Es una adición
+      console.log({productData})
       this.productService.saveProduct(productData).subscribe(
-        () => {
+        (data: any) => {
+          console.log({data});
           this.toastr.success(`El producto ${productData.name} fue registrado con éxito. Producto Registrado`);
           this.router.navigate(['crud']);
         },
