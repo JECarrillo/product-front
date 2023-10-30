@@ -3,6 +3,7 @@ import { environment } from '../../environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../../../interfaces/products';
 import { Observable } from 'rxjs/internal/Observable';
+import { Category } from 'src/interfaces/category';
 
 @Injectable({
   providedIn: 'root'
@@ -38,4 +39,7 @@ export class ProductsService {
     return this.http.put<void>(`${this.myAppUrl}${this.myApiurl}/${id}`, product)
   }
 
+  getListCategory(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.myAppUrl}categories`)
+  }
 }
