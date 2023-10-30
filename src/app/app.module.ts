@@ -17,7 +17,7 @@ import { RouterModule } from '@angular/router';
         AppComponent
     ],
     providers: [],
-   
+
     bootstrap: [AppComponent],
     imports: [
         FormsModule,
@@ -34,7 +34,7 @@ import { RouterModule } from '@angular/router';
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
         }),
-       
+
     ]
 })
 export class AppModule { }

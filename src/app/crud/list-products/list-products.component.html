@@ -1,52 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tu Página de Productos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.1/superhero/bootstrap.min.css">
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="/crud">Tu Logo</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/crud">Tu Logo</a>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <h1 class="display-4">Lista de Productos</h1>
+        <a href="/add" class="btn btn-primary mb-4">Nuevo Producto</a>
+        <table class="table table-bordered">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Nombre del Producto</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of listProducts">
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price | currency }}</td>
+                    <td>{{ product.category.category }}</td>
+                    <td class="d-flex align-items-center">
+                        <a [routerLink]="['/edit', product.id]" class="btn btn-outline-info btn-sm me-2">Editar</a>
+                        <button (click)="deleteProduct(product.id)"
+                            class="btn btn-outline-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</nav>
-
-<div class="container my-4">
-    <h1 class="display-4">Lista de Productos</h1>
-    <a href="/add" class="btn btn-primary mb-4">Nuevo Producto</a>
-    <table class="table table-bordered">
-        <thead class="bg-primary text-white">
-            <tr>
-                <th>Nombre del Producto</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Categoria</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of listProducts">
-            <td>{{ product.name }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.price | currency }}</td>
-
-            <td>{{ product.category.category }}</td>
-=======
-            <td>{{ product.category.category }}</td>
-            <td class="d-flex align-items-center">
-                <a [routerLink]="['/edit', product.id]" class="btn btn-outline-info btn-sm me-2">Editar</a>
-                <button (click)="deleteProduct(product.id)" class="btn btn-outline-danger btn-sm">Eliminar</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 
 </body>
+
 </html>
-
-
-

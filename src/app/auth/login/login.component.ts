@@ -12,33 +12,33 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  @Input() credentials: User ={
+  @Input() credentials: User = {
     name: '',
     username: '',
     password: ''
   }
 
 
-  constructor ( private authService: AuthService, private router: Router ){}
+  constructor(private authService: AuthService, private router: Router) { }
 
-  errorStatus:boolean = false;
-  errorMsj  ="";
+  errorStatus: boolean = false;
+  errorMsj = "";
 
-  onSubmit(){
+  onSubmit() {
 
     this.authService.login(this.credentials)
-    .subscribe(
-      (response) => {
-        
-        localStorage.setItem("token", response.token)
-        this.router.navigate(['crud']);
-      },
-      (error) => {
-        console.log('Error Response:', error);
-        this.errorStatus = true;
-        this.errorMsj = error.error.error; 
-      }
-    );
-    }
+      .subscribe(
+        (response) => {
 
-    }
+          localStorage.setItem("token", response.token)
+          this.router.navigate(['crud']);
+        },
+        (error) => {
+          console.log('Error Response:', error);
+          this.errorStatus = true;
+          this.errorMsj = error.error.error;
+        }
+      );
+  }
+
+}

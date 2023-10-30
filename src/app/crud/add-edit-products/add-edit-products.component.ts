@@ -27,11 +27,9 @@ export class AddEditProductsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
-<<<<<<< HEAD
+
       category: ['', Validators.required]
-=======
-      category: [null, Validators.required] // Se utiliza "null" para un campo seleccionable.
->>>>>>> 8ba07b70fac634a81144c1f068e4d588e94a7802
+
     });
 
     this.id = Number(route.snapshot.paramMap.get('id'));
@@ -41,7 +39,7 @@ export class AddEditProductsComponent implements OnInit {
     if (this.id !== 0) {
       this.operacion = 'Editar';
       this.getProduct(this.id);
-      
+
     }
     this.getListCategory();
   }
@@ -61,12 +59,10 @@ export class AddEditProductsComponent implements OnInit {
     this.productService.getProduct(id).subscribe(
       (data) => {
         this.formProducto.patchValue(data);
-<<<<<<< HEAD
+
         const selectedCategoryValue = data.category
         this.formProducto.get('categoryId')?.setValue(selectedCategoryValue)
         console.log(selectedCategoryValue)
-=======
->>>>>>> 8ba07b70fac634a81144c1f068e4d588e94a7802
       },
       (error) => {
         console.error('Error al cargar el producto', error);
@@ -78,11 +74,7 @@ export class AddEditProductsComponent implements OnInit {
     const productData = this.formProducto.value;
 
     if (this.id !== 0) {
-<<<<<<< HEAD
-      
-=======
-      // Es una edición
->>>>>>> 8ba07b70fac634a81144c1f068e4d588e94a7802
+
       this.productService.updateProduct(this.id, productData).subscribe(
         () => {
           this.toastr.info(`El producto ${productData.name} fue actualizado con éxito. Producto Actualizado`);
@@ -93,16 +85,10 @@ export class AddEditProductsComponent implements OnInit {
         }
       );
     } else {
-<<<<<<< HEAD
-      console.log({productData})
-      this.productService.saveProduct(productData).subscribe(
-        (data: any) => {
-          console.log({data});
-=======
-      // Es una adición
+
       this.productService.saveProduct(productData).subscribe(
         () => {
->>>>>>> 8ba07b70fac634a81144c1f068e4d588e94a7802
+
           this.toastr.success(`El producto ${productData.name} fue registrado con éxito. Producto Registrado`);
           this.router.navigate(['crud']);
         },

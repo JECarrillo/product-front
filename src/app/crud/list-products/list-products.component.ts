@@ -9,25 +9,26 @@ import { Product } from 'src/interfaces/products';
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent implements OnInit {
-  listProducts : any = []
-  constructor(private _productService : ProductsService, private toastr: ToastrService) { }
+  listProducts: any = []
+  constructor(private _productService: ProductsService, private toastr: ToastrService) { }
 
-    ngOnInit(): void{
+  ngOnInit(): void {
+    this.getListProducts();
+  }
+
+  getListProducts() {
+    this._productService.getListProducts().subscribe((data) => {
+      this.listProducts = data;
+    }
+    )
+  }
+
+  deleteProduct(id: number) {
+    this._productService.deleteProduct(id).subscribe(() => {
       this.getListProducts();
-     }
-
-     getListProducts(){
-      this._productService.getListProducts().subscribe((data) => {
-        this.listProducts = data;
-      }
-     )}
-
-      deleteProduct(id: number){
-        this._productService.deleteProduct(id).subscribe( ()=> {
-         this.getListProducts();
-         this.toastr.warning('El producto fue eliminado','Producto Eliminado')
-        })
-      }
+      this.toastr.warning('El producto fue eliminado', 'Producto Eliminado')
+    })
+  }
 
 
 

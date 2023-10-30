@@ -5,15 +5,15 @@ import { Observable } from "rxjs";
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService{
+export class AuthService {
   private baseUrl = 'http://localhost:3000';
 
-constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-login(credentials:{username: string; password: string}): Observable<any> {
-  console.log(credentials,"****")
-  return this.http.post(`${this.baseUrl}/auth/login`,credentials)
-}
+  login(credentials: { username: string; password: string }): Observable<any> {
+    console.log(credentials, "****")
+    return this.http.post(`${this.baseUrl}/auth/login`, credentials)
+  }
 
 }
 
